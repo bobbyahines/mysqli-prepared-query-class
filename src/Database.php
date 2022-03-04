@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 
 
+use Error;
+use mysqli;
+
 class Database
 {
 
@@ -8,7 +11,7 @@ class Database
      * @param string $dbName
      * @return \mysqli
      */
-    protected function connection(string $dbName): \mysqli
+    protected function connection(string $dbName): mysqli
     {
 
         $host = $_ENV['CLIENT_HOST'];
@@ -20,9 +23,9 @@ class Database
         try {
             $connect = \mysqli_connect($host, $user, $pass, $name, $port);
             if ($connect->connect_error) {
-                throw new \Error($connect->connect_errno . ': ' . $connect->connect_error);
+                throw new Error($connect->connect_errno . ': ' . $connect->connect_error);
             }
-        } catch (\Error $error) {
+        } catch (Error $error) {
             echo $error->getMessage();
             die();
         }
@@ -44,9 +47,9 @@ class Database
         try {
             $preparedQuery = $connection->prepare($sql);
             if (!$preparedQuery) {
-                throw new \Error($connection->error);
+                throw new Error($connection->error);
             }
-        } catch (\Error $e) {
+        } catch (Error $e) {
             echo $e->getMessage();die();
         }
 
