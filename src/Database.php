@@ -14,11 +14,11 @@ class Database
     protected function connection(string $dbName): mysqli
     {
 
-        $host = $_ENV['CLIENT_HOST'];
-        $port = $_ENV['CLIENT_PORT'];
-        $user = $_ENV['CLIENT_USER'];
-        $pass = $_ENV['CLIENT_PASS'];
-        $name = $_ENV['CLIENT_NAME'];
+        $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'];
+        $user = $_ENV['DB_USER'];
+        $pass = $_ENV['DB_PASS'];
+        $name = $_ENV['DB_NAME'];
 
         try {
             $connect = \mysqli_connect($host, $user, $pass, $name, $port);
